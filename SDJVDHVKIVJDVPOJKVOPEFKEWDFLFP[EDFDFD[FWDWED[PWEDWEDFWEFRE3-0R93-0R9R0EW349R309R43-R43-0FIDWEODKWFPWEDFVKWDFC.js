@@ -341,9 +341,6 @@ function getSupplyArrays(){
 try {
 window.mines = game.getSupplies("MINE")
 window.repairs = game.getSupplies("FIRST_AID")
-window.DA = game.getSupplies("DOUBLE_ARMOR")
-window.DD = game.getSupplies("DOUBLE_DAMAGE")
-window.NITRO = game.getSupplies("NITRO")
 
 } catch (error) {
 
