@@ -7,7 +7,6 @@ class Utils
 
     isNotOpenChat       = null; // args: void
     isParkourMode       = null; // args: void
-    isNotKillZone       = null; // args: 1 - world, 2 - position {x, y, z}
     isGameReady         = null; // args: void
 
     errorLog            = null; // args: 1 - text
@@ -118,10 +117,7 @@ gameObjects =
     world: null,
     gameActions: null,
     mines: null,
-    physicsComponent: null,
-    healthComponent: null,
-    camera: null,
-    strikerComponent: null
+    healthComponent: null
 }
 
 // gameObjects.c.js
@@ -255,23 +251,12 @@ GameObjects.getHealthComponent = function ()
 class commons{
 getRoot = null
 getReactRoot = null
-getChatState = null
 searchObject = null
 }
 
 class game{
 getTankPhysics = null
 getTank = null
-getWorld = null
-getMines = null
-getFlags = null
-getPlayers = null
-getMapBoundary = null
-getBattleState = null
-getSupplies = null
-getHealth = null
-getStriker = null
-getCamera = null
 }
 
 commons.searchObject = function(object,item){
