@@ -72,34 +72,6 @@ Utils.isParkourMode = function ()
     return rootObject.store.state.battleStatistics.isParkourMode;
 }
 
-Utils.isNotKillZone = function (world, position)
-{
-    if (!this.isParkourMode())
-    {
-        return true;
-    }
-
-    if (!world)
-        return false;
-
-    let bounds = world.entities_0.array_hd7ov6$_0.at(0).components_0.array.at(0).bounds;
-
-    if (!bounds)
-        return false;
-
-    if (position.x != 0 && (position.x >= bounds.maxX || position.x <= bounds.minX))
-        return false;
-
-    if (position.y != 0 && (position.y >= bounds.maxY || position.y <= bounds.minY))
-        return false;
-
-    return true;
-
-    if (position.z != 0 && (position.z >= bounds.maxZ || position.z <= bounds.minZ))
-        return false;
-
-    return true;
-}
 
 Utils.isGameReady = function ()
 {
@@ -280,52 +252,6 @@ GameObjects.getHealthComponent = function ()
     return gameObjects.healthComponent = localPlayer.at(1);
 }
 
-GameObjects.getCamera = function ()
-{
-    if (gameObjects.camera)
-    {
-        return gameObjects.camera;
-    }
-
-    let localPlayer = this.getLocalPlayer();
-
-    if (!localPlayer)
-    {
-        return null;
-    }
-
-    for (let i = 0; i < localPlayer.length; i++)
-    {
-        if (localPlayer.at(i).hasOwnProperty("followCamera_w8ai3w$_0"))
-            return gameObjects.camera = localPlayer.at(i).followCamera_0.currState_0;
-    }
-
-    return null;
-}
-
-GameObjects.getStrikerComponent = function ()
-{
-    if (gameObjects.strikerComponent)
-    {
-        return gameObjects.strikerComponent;
-    }
-
-    let localPlayer = this.getLocalPlayer();
-
-    if (!localPlayer)
-    {
-        return null;
-    }
-
-    for (let i = 0; i < localPlayer.length; i++)
-    {
-        if (localPlayer.at(i).hasOwnProperty("strikerWeapon_jjsiik$_0"))
-            return gameObjects.strikerComponent = localPlayer.at(i).strikerWeapon_jjsiik$_0;
-    }
-
-    return null;
-}
-
 class commons{
 getRoot = null
 getReactRoot = null
@@ -376,60 +302,6 @@ return commons.searchObject(commons.getReactRoot(),"tank").tank
 
 
 }
-
-
-// removeMines.h.js
-
-class RemoveMines
-{
-    process = null; // args: 1 - localPlayer
-}
-
-// removeMines.c.js
-
-let removeMines = false
-
-RemoveMines.process = function (localPlayer)
-{
-    if (!localPlayer)
-    {
-        return;
-    }
-
-    let world = GameObjects.getWorld();
-
-    if (!world)
-    {
-        return;
-    }
-
-    let mines = GameObjects.getMines();
-
-    if (!mines)
-    {
-        return;
-    }
-    if(removeMines) {
-
-    var n;
-    for (n = mines.minesByUser_0.keys.iterator(); n.hasNext();)
-    {
-        var o = n.next();
-        mines.removeAllMines_0(o)
-    }
-    }
-    else return
-}
-
-
-document.addEventListener('keyup', (e) =>
-{
-    if (e.keyCode == 102 && Utils.isGameReady() && Utils.isNotOpenChat())
-    {
-        removeMines = !removeMines;
-    }
-})
-
 
 class Clicker
 {
